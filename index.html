@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KezPos — Legal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:        #F4F4FF;
+      --white:     #FFFFFF;
+      --primary:   #0033FF;
+      --primary-dk:#001FCC;
+      --font:      #0C052F;
+      --sub:       #797893;
+      --shadow:    #DDE1FF;
+      --green:     #229A38;
+      --error:     #FF6A13;
+      --lighter:   #399CFF;
+      --border:    #FAFBFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--font);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      border-bottom: 1.5px solid var(--shadow);
+      box-shadow: 0 2px 24px rgba(0,51,255,0.06);
+    }
+
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, #2A7BFF, #0C4CFB);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,51,255,0.3);
+    }
+
+    .logo-mark svg { width: 20px; height: 20px; fill: white; }
+
+    .logo-name {
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--font);
+      letter-spacing: -0.5px;
+    }
+
+    .logo-name span { color: var(--primary); }
+
+    /* Language toggle */
+    .lang-toggle {
+      display: flex;
+      background: var(--bg);
+      border: 1.5px solid var(--shadow);
+      border-radius: 10px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      padding: 6px 16px;
+      border: none;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: transparent;
+      color: #797893;
+    }
+
+    .lang-btn.active {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,51,255,0.25);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, #0033FF 0%, #0C4CFB 50%, #1A57FF 100%);
+      color: white;
+      padding: 60px 24px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(57,156,255,0.3) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,255,255,0.08) 0%, transparent 50%);
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 14px;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      opacity: 0.8;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .hero-date {
+      margin-top: 20px;
+      font-size: 13px;
+      opacity: 0.6;
+      font-style: italic;
+    }
+
+    /* ── NAV TABS ── */
+    .tab-nav {
+      background: var(--white);
+      border-bottom: 1.5px solid var(--shadow);
+      position: sticky;
+      top: 64px;
+      z-index: 90;
+    }
+
+    .tab-nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+    }
+
+    .tab-btn {
+      padding: 16px 28px;
+      border: none;
+      background: transparent;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #797893;
+      cursor: pointer;
+      border-bottom: 2.5px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover { color: var(--primary); }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Section */
+    .section {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1.5px solid var(--shadow);
+      padding: 36px 40px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 16px rgba(0,51,255,0.04);
+      animation: fadeUp 0.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: linear-gradient(135deg, #2A7BFF, #0C4CFB);
+      color: white;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 10px rgba(0,51,255,0.25);
+    }
+
+    .section h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--font);
+      margin-bottom: 14px;
+      line-height: 1.3;
+    }
+
+    .section p {
+      font-size: 14.5px;
+      line-height: 1.8;
+      color: #3a3860;
+      margin-bottom: 12px;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .section ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14.5px;
+      line-height: 1.7;
+      color: #3a3860;
+    }
+
+    .section ul li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      min-width: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      margin-top: 8px;
+    }
+
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(0,51,255,0.05), rgba(57,156,255,0.05));
+      border: 1.5px solid rgba(0,51,255,0.12);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 16px 0;
+    }
+
+    .highlight-box p {
+      color: var(--primary-dk);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .contact-card {
+      background: linear-gradient(135deg, #0033FF, #1A57FF);
+      border-radius: 12px;
+      padding: 24px 28px;
+      color: white;
+      margin-top: 16px;
+    }
+
+    .contact-card p { color: rgba(255,255,255,0.85); margin-bottom: 4px; }
+
+    .contact-card a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 16px;
+    }
+
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--font);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    footer a:hover { color: white; }
+    footer strong { color: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .section { padding: 24px 20px; }
+      .tab-btn { padding: 14px 16px; font-size: 13px; }
+      .hero { padding: 44px 20px 60px; }
+    }
+
+    /* Language content */
+    [data-lang] { display: none; }
+    [data-lang].visible { display: block; }
+    li[data-lang] { display: none; }
+    li[data-lang].visible { display: flex; }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 4h10v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2z"/></svg>
+      </div>
+      <span class="logo-name">Kez<span>Pos</span></span>
+    </a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')">English</button>
+      <button class="lang-btn" onclick="setLang('sw')">Kiswahili</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-badge" data-lang="en" style="display:inline-block">Legal Documents</div>
+    <div class="hero-badge" data-lang="sw">Nyaraka za Kisheria</div>
+    <h1 data-lang="en" class="visible">Terms of Service &amp;<br/>Privacy Policy</h1>
+    <h1 data-lang="sw">Masharti ya Huduma &amp;<br/>Sera ya Faragha</h1>
+    <p data-lang="en" class="visible">KezPos is committed to transparency, security, and your trust. Please read these documents carefully.</p>
+    <p data-lang="sw">KezPos imejitolea kwa uwazi, usalama, na imani yako. Tafadhali soma nyaraka hizi kwa makini.</p>
+    <div class="hero-date" data-lang="en" style="display:block">Last updated: June 2025 &nbsp;·&nbsp; Effective: June 2025</div>
+    <div class="hero-date" data-lang="sw">Imesasishwa mwisho: Juni 2025 &nbsp;·&nbsp; Inaanza kutumika: Juni 2025</div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tab-btn active" onclick="setTab('terms')">
+      <span data-lang="en" class="visible">Terms of Service</span>
+      <span data-lang="sw">Masharti ya Huduma</span>
+    </button>
+    <button class="tab-btn" onclick="setTab('privacy')">
+      <span data-lang="en" class="visible">Privacy Policy</span>
+      <span data-lang="sw">Sera ya Faragha</span>
+    </button>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- TERMS OF SERVICE -->
+  <!-- ════════════════════════════════════════ -->
+  <div id="tab-terms" class="tab-panel active">
+
+    <!-- 1 -->
+    <div class="section">
+      <div class="section-number">1</div>
+      <h2 data-lang="en" class="visible">Acceptance of Terms</h2>
+      <h2 data-lang="sw">Kukubali Masharti</h2>
+      <p data-lang="en" class="visible">By downloading, installing, or using KezPos ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
+      <p data-lang="sw">Kwa kupakua, kusanikisha, au kutumia KezPos ("Programu"), unakubali kufuata Masharti haya ya Huduma ("Masharti"). Kama hukubaliani na Masharti haya, tafadhali usitumie Programu.</p>
+      <p data-lang="en" class="visible">These Terms apply to all users of KezPos, including wholesalers, retailers, and any business owners using the App to manage their operations.</p>
+      <p data-lang="sw">Masharti haya yanatumika kwa watumiaji wote wa KezPos, ikiwa ni pamoja na wauza jumla, wauza rejareja, na wamiliki wowote wa biashara wanaotumia Programu kusimamia shughuli zao.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="section">
+      <div class="section-number">2</div>
+      <h2 data-lang="en" class="visible">Description of Service</h2>
+      <h2 data-lang="sw">Maelezo ya Huduma</h2>
+      <p data-lang="en" class="visible">KezPos is a mobile Business Management Tool designed for wholesalers and retailers. It enables users to:</p>
+      <p data-lang="sw">KezPos ni Zana ya Usimamizi wa Biashara ya simu iliyoundwa kwa wauza jumla na wauza rejareja. Inaruhusu watumiaji:</p>
+      <ul>
+        <li data-lang="en" class="visible">Track inventory and manage stock levels</li>
+        <li data-lang="sw">Kufuatilia hesabu ya bidhaa na kusimamia viwango vya stoki</li>
+        <li data-lang="en" class="visible">Generate digital sales receipts</li>
+        <li data-lang="sw">Kutengeneza risiti za mauzo za kidijitali</li>
+        <li data-lang="en" class="visible">Manage customer records and payment history</li>
+        <li data-lang="sw">Kusimamia rekodi za wateja na historia ya malipo</li>
+        <li data-lang="en" class="visible">Synchronise business data securely to the cloud</li>
+        <li data-lang="sw">Kusawazisha data ya biashara kwa usalama kwenye wingu</li>
+        <li data-lang="en" class="visible">Generate sales and profit reports</li>
+        <li data-lang="sw">Kutengeneza ripoti za mauzo na faida</li>
+      </ul>
+      <p data-lang="en" class="visible">KezPos acts as a digital version of a traditional paper ledger and receipt book.</p>
+      <p data-lang="sw">KezPos hufanya kazi kama toleo la kidijitali la daftari la kawaida la karatasi na kitabu cha risiti.</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="section">
+      <div class="section-number">3</div>
+      <h2 data-lang="en" class="visible">User Accounts</h2>
+      <h2 data-lang="sw">Akaunti za Watumiaji</h2>
+      <p data-lang="en" class="visible">To access KezPos, you must create an account using a valid email address. You are responsible for:</p>
+      <p data-lang="sw">Ili kufikia KezPos, lazima uunde akaunti kwa kutumia anwani ya barua pepe halali. Unawajibika kwa:</p>
+      <ul>
+        <li data-lang="en" class="visible">Maintaining the confidentiality of your password</li>
+        <li data-lang="sw">Kulinda usiri wa nenosiri lako</li>
+        <li data-lang="en" class="visible">All activities that occur under your account</li>
+        <li data-lang="sw">Shughuli zote zinazofanyika chini ya akaunti yako</li>
+        <li data-lang="en" class="visible">Ensuring your account information is accurate and up to date</li>
+        <li data-lang="sw">Kuhakikisha taarifa za akaunti yako ni sahihi na za kisasa</li>
+      </ul>
+      <div class="highlight-box">
+        <p data-lang="en" class="visible">⚠️ You must notify us immediately at <strong>kezposapp&#64;gmail&#46;com</strong> if you suspect any unauthorised use of your account.</p>
+        <p data-lang="sw">⚠️ Lazima utujulishe mara moja kwa <strong>kezposapp&#64;gmail&#46;com</strong> ukishuku matumizi yoyote yasiyoidhinishwa ya akaunti yako.</p>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="section">
+      <div class="section-number">4</div>
+      <h2 data-lang="en" class="visible">Acceptable Use</h2>
+      <h2 data-lang="sw">Matumizi Yanayokubalika</h2>
+      <p data-lang="en" class="visible">You agree to use KezPos only for lawful business purposes. You must not:</p>
+      <p data-lang="sw">Unakubali kutumia KezPos kwa madhumuni ya biashara yanayoruhusiwa kisheria tu. Usifanye:</p>
+      <ul>
+        <li data-lang="en" class="visible">Use the App for any illegal or fraudulent activity</li>
+        <li data-lang="sw">Kutumia Programu kwa shughuli yoyote haramu au ya udanganyifu</li>
+        <li data-lang="en" class="visible">Attempt to reverse-engineer, copy, or modify the App</li>
+        <li data-lang="sw">Kujaribu kubadilisha, kunakili, au kurekebisha Programu</li>
+        <li data-lang="en" class="visible">Share your account credentials with unauthorised persons</li>
+        <li data-lang="sw">Kushiriki vitambulisho vya akaunti yako na watu wasioidhinishwa</li>
+        <li data-lang="en" class="visible">Attempt to disrupt or interfere with the App's servers or security</li>
+        <li data-lang="sw">Kujaribu kuvuruga au kuingilia seva au usalama wa Programu</li>
+      </ul>
+    </div>
+
+    <!-- 5 -->
+    <div class="section">
+      <div class="section-number">5</div>
+      <h2 data-lang="en" class="visible">Data Ownership</h2>
+      <h2 data-lang="sw">Umiliki wa Data</h2>
+      <p data-lang="en" class="visible">You own all business data you enter into KezPos — including your inventory, customer records, and sales transactions. KezPos does not claim ownership over your business data.</p>
+      <p data-lang="sw">Unamiliki data yote ya biashara unayoingiza katika KezPos — ikiwa ni pamoja na hesabu yako ya bidhaa, rekodi za wateja, na miamala ya mauzo. KezPos haidai umiliki wa data yako ya biashara.</p>
+      <p data-lang="en" class="visible">By using the App, you grant KezPos a limited licence to store and sync your data solely for the purpose of providing the service to you.</p>
+      <p data-lang="sw">Kwa kutumia Programu, unampa KezPos leseni ndogo ya kuhifadhi na kusawazisha data yako kwa madhumuni ya kutoa huduma kwako pekee.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="section">
+      <div class="section-number">6</div>
+      <h2 data-lang="en" class="visible">Disclaimers &amp; Limitation of Liability</h2>
+      <h2 data-lang="sw">Kanusho na Ukomo wa Dhima</h2>
+      <p data-lang="en" class="visible">KezPos is provided "as is" without warranties of any kind. We do not guarantee that the App will be error-free or uninterrupted.</p>
+      <p data-lang="sw">KezPos inatolewa "kama ilivyo" bila dhamana yoyote. Hatuhakikishii kwamba Programu itakuwa bila makosa au bila kukatizwa.</p>
+      <p data-lang="en" class="visible">To the maximum extent permitted by Kenyan law, KezPos shall not be liable for any indirect, incidental, or consequential loss arising from your use of the App, including but not limited to loss of business data or revenue.</p>
+      <p data-lang="sw">Kwa kiwango cha juu kinachoruhusiwa na sheria ya Kenya, KezPos haitawajibika kwa hasara yoyote isiyo ya moja kwa moja, ya bahati mbaya, au inayotokana na matumizi yako ya Programu, ikiwa ni pamoja na upotevu wa data ya biashara au mapato.</p>
+      <div class="highlight-box">
+        <p data-lang="en" class="visible">📦 We strongly recommend regularly exporting your data using the built-in Export Database feature as a backup precaution.</p>
+        <p data-lang="sw">📦 Tunakuhamasisha sana kusafirisha data yako mara kwa mara kwa kutumia kipengele cha Kusafirisha Hifadhidata kilichojengwa ndani kama tahadhari ya nakala rudufu.</p>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="section">
+      <div class="section-number">7</div>
+      <h2 data-lang="en" class="visible">Modifications to the App &amp; Terms</h2>
+      <h2 data-lang="sw">Mabadiliko ya Programu na Masharti</h2>
+      <p data-lang="en" class="visible">KezPos reserves the right to modify, update, or discontinue any feature of the App at any time. We will notify users of significant changes through the App or via email.</p>
+      <p data-lang="sw">KezPos inajiwekea haki ya kubadilisha, kusasisha, au kusimamisha kipengele chochote cha Programu wakati wowote. Tutawajulisha watumiaji mabadiliko makubwa kupitia Programu au barua pepe.</p>
+      <p data-lang="en" class="visible">Your continued use of KezPos after changes are made constitutes acceptance of the updated Terms.</p>
+      <p data-lang="sw">Matumizi yako ya kuendelea ya KezPos baada ya mabadiliko kufanywa yanajumuisha kukubali Masharti yaliyosasishwa.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="section">
+      <div class="section-number">8</div>
+      <h2 data-lang="en" class="visible">Governing Law</h2>
+      <h2 data-lang="sw">Sheria Inayotumika</h2>
+      <p data-lang="en" class="visible">These Terms are governed by the laws of the Republic of Kenya. Any disputes arising from these Terms shall be subject to the jurisdiction of the courts of Kenya.</p>
+      <p data-lang="sw">Masharti haya yanafuata sheria za Jamhuri ya Kenya. Migogoro yoyote inayotokana na Masharti haya itasimamiwa na mamlaka ya mahakama za Kenya.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="section">
+      <div class="section-number">9</div>
+      <h2 data-lang="en" class="visible">Contact Us</h2>
+      <h2 data-lang="sw">Wasiliana Nasi</h2>
+      <p data-lang="en" class="visible">If you have any questions about these Terms, please contact us:</p>
+      <p data-lang="sw">Ikiwa una maswali yoyote kuhusu Masharti haya, tafadhali wasiliana nasi:</p>
+      <div class="contact-card">
+        <p data-lang="en" class="visible">Email us at</p>
+        <p data-lang="sw">Tutumie barua pepe kwa</p>
+        <a href="mailto:kezposapp@gmail.com">kezposapp&#64;gmail&#46;com</a>
+      </div>
+    </div>
+
+  </div><!-- end tab-terms -->
+
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- PRIVACY POLICY -->
+  <!-- ════════════════════════════════════════ -->
+  <div id="tab-privacy" class="tab-panel">
+
+    <!-- 1 -->
+    <div class="section">
+      <div class="section-number">1</div>
+      <h2 data-lang="en" class="visible">Introduction</h2>
+      <h2 data-lang="sw">Utangulizi</h2>
+      <p data-lang="en" class="visible">KezPos ("we", "us", or "our") is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, and your rights regarding your data.</p>
+      <p data-lang="sw">KezPos ("sisi", "us", au "yetu") imejitolea kulinda taarifa zako za kibinafsi. Sera hii ya Faragha inaeleza data tunayokusanya, jinsi tunavyoitumia, na haki zako kuhusu data yako.</p>
+      <p data-lang="en" class="visible">This policy applies to all users of the KezPos mobile application and is compliant with the Kenya Data Protection Act, 2019.</p>
+      <p data-lang="sw">Sera hii inatumika kwa watumiaji wote wa programu ya simu ya KezPos na inazingatia Sheria ya Ulinzi wa Data ya Kenya ya 2019.</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="section">
+      <div class="section-number">2</div>
+      <h2 data-lang="en" class="visible">Information We Collect</h2>
+      <h2 data-lang="sw">Taarifa Tunazokusanya</h2>
+      <p data-lang="en" class="visible">We collect only the minimum information necessary to provide the KezPos service:</p>
+      <p data-lang="sw">Tunakusanya taarifa za chini kabisa zinazohitajika kutoa huduma ya KezPos:</p>
+      <ul>
+        <li data-lang="en" class="visible"><strong>Email address</strong> — used to create and authenticate your account</li>
+        <li data-lang="sw"><strong>Anwani ya barua pepe</strong> — inatumika kuunda na kuthibitisha akaunti yako</li>
+        <li data-lang="en" class="visible"><strong>Shop name</strong> — used to personalise receipts and reports</li>
+        <li data-lang="sw"><strong>Jina la duka</strong> — inatumika kubinafsisha risiti na ripoti</li>
+        <li data-lang="en" class="visible"><strong>Sales and transaction data</strong> — your inventory items, customer records, receipts, and payment history that you enter into the App</li>
+        <li data-lang="sw"><strong>Data ya mauzo na miamala</strong> — vitu vya hesabu yako ya bidhaa, rekodi za wateja, risiti, na historia ya malipo unayoingiza katika Programu</li>
+      </ul>
+      <div class="highlight-box">
+        <p data-lang="en" class="visible">📍 <strong>Location permission (Bluetooth printers only):</strong> Android requires location permission to scan for nearby Bluetooth devices when connecting a receipt printer. This permission is used solely to discover Bluetooth printers in your vicinity — we do <strong>not</strong> record, store, or transmit your physical location at any time.</p>
+        <p data-lang="sw">📍 <strong>Ruhusa ya eneo (printa za Bluetooth pekee):</strong> Android inahitaji ruhusa ya eneo kutafuta vifaa vya Bluetooth vilivyo karibu wakati wa kuunganisha printa ya risiti. Ruhusa hii inatumika tu kutafuta printa za Bluetooth karibu nawe — <strong>hatuhifadhi, hatusajili, wala hatutumi</strong> eneo lako la kimwili wakati wowote.</p>
+      </div>
+      <div class="highlight-box" style="margin-top:10px">
+        <p data-lang="en" class="visible">✅ We do <strong>not</strong> collect device contacts, camera access, or any other sensitive personal information beyond what is listed above.</p>
+        <p data-lang="sw">✅ Hatukusanyi anwani za kifaa, ufikiaji wa kamera, au taarifa nyingine nyeti za kibinafsi zaidi ya zile zilizoorodheshwa hapo juu.</p>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="section">
+      <div class="section-number">3</div>
+      <h2 data-lang="en" class="visible">How We Use Your Information</h2>
+      <h2 data-lang="sw">Jinsi Tunavyotumia Taarifa Zako</h2>
+      <p data-lang="en" class="visible">We use the information we collect to:</p>
+      <p data-lang="sw">Tunatumia taarifa tunazokusanya kwa:</p>
+      <ul>
+        <li data-lang="en" class="visible">Create and manage your KezPos account</li>
+        <li data-lang="sw">Kuunda na kusimamia akaunti yako ya KezPos</li>
+        <li data-lang="en" class="visible">Sync your business data securely across devices</li>
+        <li data-lang="sw">Kusawazisha data yako ya biashara kwa usalama kwenye vifaa</li>
+        <li data-lang="en" class="visible">Restore your data when you sign in on a new device</li>
+        <li data-lang="sw">Kurejesha data yako unapoingia kwenye kifaa kipya</li>
+        <li data-lang="en" class="visible">Send important account and service notifications</li>
+        <li data-lang="sw">Kutuma arifa muhimu za akaunti na huduma</li>
+        <li data-lang="en" class="visible">Improve the App based on usage patterns (anonymised)</li>
+        <li data-lang="sw">Kuboresha Programu kulingana na mifumo ya matumizi (isiyojulikana)</li>
+      </ul>
+      <p data-lang="en" class="visible">We do <strong>not</strong> sell, rent, or share your personal data with third parties for marketing purposes.</p>
+      <p data-lang="sw">Hatuuzi, kukodisha, au kushiriki data yako ya kibinafsi na wahusika wengine kwa madhumuni ya uuzaji.</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="section">
+      <div class="section-number">4</div>
+      <h2 data-lang="en" class="visible">Data Storage &amp; Security</h2>
+      <h2 data-lang="sw">Uhifadhi wa Data na Usalama</h2>
+      <p data-lang="en" class="visible">Your data is stored in two places:</p>
+      <p data-lang="sw">Data yako inahifadhiwa mahali mawili:</p>
+      <ul>
+        <li data-lang="en" class="visible"><strong>Locally on your device</strong> — for offline access and performance</li>
+        <li data-lang="sw"><strong>Ndani ya kifaa chako</strong> — kwa ufikiaji bila mtandao na utendaji</li>
+        <li data-lang="en" class="visible"><strong>Supabase cloud servers</strong> — encrypted and securely hosted, used for backup and cross-device sync</li>
+        <li data-lang="sw"><strong>Seva za wingu za Supabase</strong> — zilizosimbwa kwa njia fiche na kuhifadhiwa kwa usalama, zinatumika kwa nakala rudufu na usawazishaji kati ya vifaa</li>
+      </ul>
+      <p data-lang="en" class="visible">We implement industry-standard security measures including encrypted data transmission (HTTPS/TLS) and secure authentication to protect your information.</p>
+      <p data-lang="sw">Tunatekeleza hatua za usalama za kiwango cha tasnia ikiwa ni pamoja na usambazaji wa data uliosimbwa kwa njia fiche (HTTPS/TLS) na uthibitishaji salama kulinda taarifa zako.</p>
+      <div class="highlight-box">
+        <p data-lang="en" class="visible">🔒 Your password is never stored in plain text. All authentication is handled securely through Supabase Auth.</p>
+        <p data-lang="sw">🔒 Nenosiri lako haliwahi kuhifadhiwa kwa maandishi ya kawaida. Uthibitishaji wote unashughulikiwa kwa usalama kupitia Supabase Auth.</p>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="section">
+      <div class="section-number">5</div>
+      <h2 data-lang="en" class="visible">Data Retention &amp; Deletion</h2>
+      <h2 data-lang="sw">Uhifadhi na Ufutaji wa Data</h2>
+      <p data-lang="en" class="visible">Your data is retained for as long as your account is active. You have the right to delete all your data at any time directly from the App:</p>
+      <p data-lang="sw">Data yako inahifadhiwa maadamu akaunti yako iko hai. Una haki ya kufuta data yako yote wakati wowote moja kwa moja kutoka kwa Programu:</p>
+      <ul>
+        <li data-lang="en" class="visible">Go to <strong>Settings → Backup &amp; Data → Delete All Data</strong></li>
+        <li data-lang="sw">Nenda <strong>Mipangilio → Hifadhi na Data → Futa Data Yote</strong></li>
+        <li data-lang="en" class="visible">This permanently deletes all your data locally and from our cloud servers</li>
+        <li data-lang="sw">Hii inafuta kabisa data yako yote ndani ya kifaa na kutoka kwa seva zetu za wingu</li>
+      </ul>
+      <p data-lang="en" class="visible">You may also request account deletion by contacting us at <strong>kezposapp&#64;gmail&#46;com</strong>. We will process deletion requests within 30 days.</p>
+      <p data-lang="sw">Unaweza pia kuomba ufutaji wa akaunti kwa kuwasiliana nasi kwa <strong>kezposapp&#64;gmail&#46;com</strong>. Tutashughulikia maombi ya ufutaji ndani ya siku 30.</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="section">
+      <div class="section-number">6</div>
+      <h2 data-lang="en" class="visible">Your Rights</h2>
+      <h2 data-lang="sw">Haki Zako</h2>
+      <p data-lang="en" class="visible">Under the Kenya Data Protection Act, 2019, you have the right to:</p>
+      <p data-lang="sw">Chini ya Sheria ya Ulinzi wa Data ya Kenya ya 2019, una haki ya:</p>
+      <ul>
+        <li data-lang="en" class="visible"><strong>Access</strong> — request a copy of all personal data we hold about you</li>
+        <li data-lang="sw"><strong>Ufikiaji</strong> — kuomba nakala ya data yote ya kibinafsi tunayoishikilia kuhusu wewe</li>
+        <li data-lang="en" class="visible"><strong>Correction</strong> — request correction of inaccurate data</li>
+        <li data-lang="sw"><strong>Marekebisho</strong> — kuomba urekebishaji wa data isiyo sahihi</li>
+        <li data-lang="en" class="visible"><strong>Deletion</strong> — request erasure of your personal data</li>
+        <li data-lang="sw"><strong>Ufutaji</strong> — kuomba ufutaji wa data yako ya kibinafsi</li>
+        <li data-lang="en" class="visible"><strong>Portability</strong> — export your data at any time using the App's Export Database feature</li>
+        <li data-lang="sw"><strong>Uhamishaji</strong> — safirisha data yako wakati wowote kwa kutumia kipengele cha Kusafirisha Hifadhidata cha Programu</li>
+        <li data-lang="en" class="visible"><strong>Objection</strong> — object to processing of your data in certain circumstances</li>
+        <li data-lang="sw"><strong>Pingamizi</strong> — pingana na usindikaji wa data yako katika hali fulani</li>
+      </ul>
+      <p data-lang="en" class="visible">To exercise any of these rights, contact us at <strong>kezposapp&#64;gmail&#46;com</strong>.</p>
+      <p data-lang="sw">Ili kutumia haki hizi zozote, wasiliana nasi kwa <strong>kezposapp&#64;gmail&#46;com</strong>.</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="section">
+      <div class="section-number">7</div>
+      <h2 data-lang="en" class="visible">Third-Party Services</h2>
+      <h2 data-lang="sw">Huduma za Wahusika Wengine</h2>
+      <p data-lang="en" class="visible">KezPos uses the following third-party service to operate:</p>
+      <p data-lang="sw">KezPos inatumia huduma ya wahusika wengine ifuatayo kufanya kazi:</p>
+      <ul>
+        <li data-lang="en" class="visible"><strong>Supabase</strong> — cloud database and authentication provider. Your data is processed in accordance with Supabase's Privacy Policy.</li>
+        <li data-lang="sw"><strong>Supabase</strong> — mtoa huduma wa hifadhidata ya wingu na uthibitishaji. Data yako inashughulikiwa kwa mujibu wa Sera ya Faragha ya Supabase.</li>
+      </ul>
+      <p data-lang="en" class="visible">We do not integrate with advertising networks, analytics platforms, or any other third-party data processors.</p>
+      <p data-lang="sw">Hatuunganishi na mitandao ya utangazaji, majukwaa ya uchanganuzi, au wasindikaji wengine wa data wa wahusika wengine.</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="section">
+      <div class="section-number">8</div>
+      <h2 data-lang="en" class="visible">Children's Privacy</h2>
+      <h2 data-lang="sw">Faragha ya Watoto</h2>
+      <p data-lang="en" class="visible">KezPos is designed for business use and is not intended for use by individuals under the age of 18. We do not knowingly collect personal data from minors.</p>
+      <p data-lang="sw">KezPos imeundwa kwa matumizi ya biashara na haikusudiwa kutumika na watu walio chini ya umri wa miaka 18. Hatukusanyi kwa makusudi data ya kibinafsi kutoka kwa watoto wadogo.</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="section">
+      <div class="section-number">9</div>
+      <h2 data-lang="en" class="visible">Changes to This Policy</h2>
+      <h2 data-lang="sw">Mabadiliko ya Sera Hii</h2>
+      <p data-lang="en" class="visible">We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page and notify you via the App or email if the changes are significant.</p>
+      <p data-lang="sw">Tunaweza kusasisha Sera hii ya Faragha mara kwa mara. Tutakapofanya hivyo, tutasasisha tarehe ya "Imesasishwa mwisho" juu ya ukurasa huu na kukujulisha kupitia Programu au barua pepe ikiwa mabadiliko ni makubwa.</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="section">
+      <div class="section-number">10</div>
+      <h2 data-lang="en" class="visible">Contact Us</h2>
+      <h2 data-lang="sw">Wasiliana Nasi</h2>
+      <p data-lang="en" class="visible">For any privacy-related questions, data requests, or concerns, please contact:</p>
+      <p data-lang="sw">Kwa maswali yoyote yanayohusiana na faragha, maombi ya data, au wasiwasi, tafadhali wasiliana na:</p>
+      <div class="contact-card">
+        <p data-lang="en" class="visible">KezPos Data Controller</p>
+        <p data-lang="sw">Msimamizi wa Data wa KezPos</p>
+        <a href="mailto:kezposapp@gmail.com">kezposapp&#64;gmail&#46;com</a>
+      </div>
+    </div>
+
+  </div><!-- end tab-privacy -->
+
+</div><!-- end content-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <strong>KezPos</strong> &nbsp;·&nbsp;
+  <span data-lang="en" style="display:inline" class="visible">© 2025 KezPos. All rights reserved.</span>
+  <span data-lang="sw">© 2025 KezPos. Haki zote zimehifadhiwa.</span>
+  <br/>
+  <span data-lang="en" class="visible">Built for Kenyan businesses &nbsp;·&nbsp; <a href="mailto:kezposapp@gmail.com">kezposapp&#64;gmail&#46;com</a></span>
+  <span data-lang="sw">Imejengwa kwa biashara za Kenya &nbsp;·&nbsp; <a href="mailto:kezposapp@gmail.com">kezposapp&#64;gmail&#46;com</a></span>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+
+    // Update lang buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') === "setLang('" + lang + "')") {
+        btn.classList.add('active');
+      }
+    });
+
+    // Show/hide all [data-lang] elements
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      const elLang = el.getAttribute('data-lang');
+      if (elLang === lang) {
+        el.classList.add('visible');
+        if (el.tagName === 'SPAN') el.style.display = 'inline';
+        if (el.tagName === 'DIV') el.style.display = 'block';
+      } else {
+        el.classList.remove('visible');
+        if (el.tagName === 'SPAN') el.style.display = 'none';
+        if (el.tagName === 'DIV') el.style.display = 'none';
+      }
+    });
+  }
+
+  function setTab(tab) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      const isActive = btn.getAttribute('onclick') === "setTab('" + tab + "')";
+      btn.classList.toggle('active', isActive);
+    });
+
+    // Show/hide panels
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.toggle('active', panel.id === 'tab-' + tab);
+    });
+  }
+
+  // Init on load
+  document.addEventListener('DOMContentLoaded', function() {
+    setLang('en');
+    setTab('terms');
+  });
+</script>
+
+</body>
+</html>
